@@ -1,14 +1,99 @@
-# Deprecated: This file is kept for backward compatibility only.
-# Use config.py for all configuration values.
+import os
+from typing import Optional
 
-import warnings
-from config import *
 
-warnings.warn(
-    "texts.py is deprecated. Please import from config.py instead.",
-    DeprecationWarning,
-    stacklevel=2
-)
+def get_env_var(var_name: str, default: Optional[str] = None) -> str:
+    """
+    Get environment variable value with optional default.
+    
+    Args:
+        var_name: Name of the environment variable
+        default: Default value if environment variable is not set
+        
+    Returns:
+        Environment variable value or default
+        
+    Raises:
+        ValueError: If environment variable is not set and no default provided
+    """
+    value = os.getenv(var_name, default)
+    if value is None:
+        raise ValueError(f"Environment variable {var_name} is required but not set")
+    return value
+
+
+# Configuration constants - these should remain the same
+CONFIG = 'config'
+GENDER = 'gender'
+TERMS = 'terms'
+INIT = 'init'
+VIP_USER_MENU = 'VIP_USER_MENU'
+VIP_USER_CALIB = "קליברציה"
+VIP_USER_SENTENCE = "משפט"
+BRIEF = 'briefing'
+AGE = 'age'
+ACCENT = 'accent'
+RULES = 'rules'
+FIRST_VIDEO = 'first_video'
+GET_SENTENCE = 'get sentence'
+VIP_USER_GET_SENTENCE = 'VIP_USER_GET_SENTENCE'
+SECOND_VIDEO = 'second_video'
+LAST_CHOICE = 'last_choice'
+NTH_VIDEO = 'nth_video'
+CURIOUS = 'corious'
+STATE = 'state'
+USER_NAME = 'user_name'
+SENTENCE = 'sentence'
+SESSION_ID = 'session_id'
+LIGHTING_COLOR = 'LIGHTING_COLOR'
+LIGHTING_INTENSITY = 'LIGHTING_INTENSITY'
+PLACE = 'place'
+TTL = 'ttl'
+
+# Gender options
+MALE = "זכר"
+FEMALE = "נקבה"
+
+# Accent options
+ACCENT1 = 'לא'
+ACCENT2 = 'כן'
+ACCENT3 = 'צרפתי'
+ACCENT4 = 'סלאבי'
+ACCENT5 = 'אמריקאי'
+ACCENT6 = 'לטיני'
+ACCENT7 = 'אחר'
+
+# Button responses
+OK_TERMS = "אני מאשר"
+OK_NTH = "יאללה, למה לא"
+IM_DONE = "בהזדמנות אחרת"
+OK_TERMS_FEMALE = "אני מאשרת"
+QUIT = 'quit'
+WHAT = "רגע, איפה היינו?"
+RESET = "בוא נתחיל את השיחה מחדש"
+BRIEF1 = "כן בקצרה, מה נעשה עכשיו?"
+LETSTART = "לא, בוא נתחיל"
+
+# Environment-based configuration
+VIP_USER = get_env_var('VIP_USER_ID', 'vip_user')
+ADMIN = get_env_var('ADMIN_USER_ID', 'admin_user')
+GUEST = get_env_var('GUEST_USER_ID', 'guest_user')
+
+# AWS Resources
+CHAT_TABLE = get_env_var('CHAT_TABLE_NAME', 'ChatDB')
+TEXT_TABLE = get_env_var('TEXT_TABLE_NAME', 'TextDB')
+S3_BUCKET_NAME = get_env_var('S3_BUCKET_NAME')
+QUEUE_URL = get_env_var('SQS_QUEUE_URL')
+WEBHOOK_URL = get_env_var('WEBHOOK_URL')
+
+# Telegram Configuration
+TOKEN = get_env_var('TELEGRAM_BOT_TOKEN')
+
+# Demo video file IDs
+DEMO1_VIDEO_ID = get_env_var('DEMO1_VIDEO_ID', 'BAACAgQAAxkBAAIMSWSIRhdtrXCHEUCMH2Py8I6_q9j3AAK9EwACkApAUHbMxGUWd6bsLwQ')
+DEMO2_VIDEO_ID = get_env_var('DEMO2_VIDEO_ID', 'BAACAgQAAxkBAAIMamSIR_-YIoh2BhEkfR-70qwxiptzAALIEwACkApAUJgbgCttnWbGLwQ')
+
+# Static text content (Hebrew text for the bot responses)
 INITIAL_VIP_USER = "הו שלום לך אדוני!\n\n" \
                    "ברוך בואך, " \
                    "כאן אלפרד לשירותך \U0001F916\n"
