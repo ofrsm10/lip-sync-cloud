@@ -1,4 +1,4 @@
-# Lip Sync Cloud - AI Video Processing Bot
+# Lip Sync Cloud - Video Processing Bot
 
 A sophisticated Telegram bot system for collecting and processing lip-sync video data using AWS cloud infrastructure. The system enables users to contribute video samples that help train AI models for lip-reading and speech synthesis applications.
 
