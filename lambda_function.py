@@ -175,7 +175,7 @@ async def process(body: Dict[str, Any]) -> None:
 
         elif video_file_id:
             logger.info(f"Processing video message with file_id: {video_file_id}")
-            await handle_video(video_file_id, state)
+            await handle_video(video_file_id, username, state)
         else:
             logger.warning("Message contains neither text nor video")
             await send_wrong_response_message()
